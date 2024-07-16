@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Recipe List</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar [(ngModel)]="query" debounce="500" (ionInput)="searchRecipes()"></ion-searchbar>
+  <ion-list *ngIf="recipes.length > 0; else noResults">
+    <ion-item *ngFor="let recipe of recipes" (click)="viewRecipe(recipe.id)">
+      <ion-thumbnail slot="start">
+        <ion-img [src]="recipe.image" alt="{{ recipe.title }}"></ion-img>
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ recipe.title }}</h2>
+        <p [innerHTML]="getShortDescription(recipe.summary)"></p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <ng-template #noResults>
+    <ion-item>
+      <ion-label>No recipes found.</ion-label>
+    </ion-item>
+  </ng-template>
+</ion-content>

@@ -1,0 +1,41 @@
+ion-header {
+  ion-toolbar {
+    --background: var(--ion-color-primary);
+    --ion-color-base: #fff;
+    --border-color: transparent;
+    --ion-color-primary: #AE445A;
+
+    ion-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+  }
+
+  ion-content ion-searchbar {
+    margin: 0 auto;
+    max-width: 0 auto;
+  }
+
+  ion-buttons {
+    ion-icon {
+      height: 30px;
+      width: 30px;
+      margin-left: 10px;
+    }
+  }
+
+}
+
+ion-card.featured-recipe {
+  ion-card-content {
+    ion-button {
+      --background: #AE445A;
+      --font-weight: bold;
+    }
+  }
+}
+
+.loading-spinner {
+  margin-top: 20px;
+  --color: var(--ion-color-primary);
+}

@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar color="primary">
+     <ion-buttons slot="start">
+      <ion-icon src="assets/icon/cook-2.svg"></ion-icon>
+    </ion-buttons>
+    <ion-title>E-Cook</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-searchbar [(ngModel)]="searchQuery" debounce="500" (ionInput)="searchRecipes()"></ion-searchbar>
+  <ion-list lines="none" *ngIf="recipes && recipes.length > 0">
+    <ion-item button *ngFor="let recipe of recipes" (click)="viewRecipe(recipe)">
+      <ion-thumbnail slot="start">
+        <ion-img [src]="recipe.image" alt="{{ recipe.title }}"></ion-img>
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ recipe.title }}</h2>
+        <p>{{ recipe.summary }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-list lines="none" class="categories-list">
+    <ion-item button (click)="navigateToCategory('chicken')">
+      <ion-icon slot="start" name="restaurant-outline"></ion-icon>
+      <ion-label>
+        <h2>Chicken</h2>
+        <p>Explore delicious chicken recipes.</p>
+      </ion-label>
+    </ion-item>
+    <ion-item button (click)="navigateToCategory('pasta')">
+      <ion-icon slot="start" name="pizza-outline"></ion-icon>
+      <ion-label>
+        <h2>Pasta</h2>
+        <p>Discover mouth-watering pasta dishes.</p>
+      </ion-label>
+    </ion-item>
+    <ion-item button (click)="navigateToCategory('dessert')">
+      <ion-icon slot="start" name="ice-cream-outline"></ion-icon>
+      <ion-label>
+        <h2>Desserts</h2>
+        <p>Satisfy your sweet cravings.</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <!-- Featured Recipe -->
+  <ion-card *ngIf="featuredRecipe" class="featured-recipe">
+    <ion-card-header>
+      <ion-card-title>Top Populer Recipe</ion-card-title>
+    </ion-card-header>
+    <ion-img [src]="featuredRecipe.image" alt="{{ featuredRecipe.title }}"></ion-img>
+    <ion-card-content>
+      <ion-button expand="block"  (click)="viewRecipe(featuredRecipe)">View Recipe</ion-button>
+    </ion-card-content>
+  </ion-card>
+  <ion-spinner *ngIf="isLoading" name="circles" class="loading-spinner"></ion-spinner>
+</ion-content>

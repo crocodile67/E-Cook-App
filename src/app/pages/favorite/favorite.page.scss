@@ -1,0 +1,12 @@
+  ion-header {
+    ion-toolbar {
+      --background: var(--ion-color-primary);
+      --ion-color-primary: #AE445A;
+      
+      ion-title {
+        color: #fff;
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+    }
+  }

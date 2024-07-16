@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ recipe?.title }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleFavorite()">
+        <ion-icon [name]="isFavorite ? 'heart' : 'heart-outline'"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="recipe; else loading">
+  <ion-card>
+    <img [src]="recipe.image" alt="{{ recipe.title }}">
+    <ion-card-header>
+      <ion-card-title>{{ recipe.title }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p [innerHTML]="recipe.summary"></p>
+      <h2>Ingredients</h2>
+      <ul>
+        <li *ngFor="let ingredient of recipe.extendedIngredients">{{ ingredient.original }}</li>
+      </ul>
+      <h2>Instructions</h2>
+      <p [innerHTML]="recipe.instructions"></p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+<ng-template #loading>
+  <ion-spinner></ion-spinner>
+</ng-template>
